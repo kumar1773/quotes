@@ -1,0 +1,4 @@
+com/nagp/quotes/db/StudentRepository.class
+com/nagp/quotes/controller/QuotesController.class
+com/nagp/quotes/db/table/Student.class
+com/nagp/quotes/QuotesApplication.class
