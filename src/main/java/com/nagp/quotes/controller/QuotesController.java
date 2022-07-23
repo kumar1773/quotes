@@ -2,34 +2,31 @@ package com.nagp.quotes.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nagp.quotes.db.StudentRepository;
-import com.nagp.quotes.db.table.Student;
-
 @RestController
-@RequestMapping("/quotes")
+@RequestMapping(value = "/quotes")
 public class QuotesController {
-
-//	private StudentRepository studentRepository;
-//	
-//	public QuotesController(StudentRepository repository) {
-//		this.studentRepository = repository;
-//	}
-
-	@GetMapping("/all")
-	public List<Student> getQuotes() {
-		List<Student> students = new ArrayList<Student>();
-		students.add(new Student(1, "Neeraj", "N@nagarro.com"));
-		return students;
+	public static List<String> quotes;
+	static  {
+		quotes = new ArrayList<String>();
+		quotes.add("Early to bed, Early to rise, Makes you healthy wealthy and wise");
+		quotes.add("An apple a day, keeps doctors away");
+		quotes.add("Slow and steady wins the race");
+		quotes.add("One in hand is better then two in bush");
 	}
 
-	@GetMapping("/error")
-	public String onError() {
-		return "Error occured";
+	@GetMapping("/all")
+	public List<String> getQuotes(){
+		return quotes;
+	}
+	
+	@GetMapping("/random")
+	public String getRandomQuotes(){
+		return quotes.get(new Random().nextInt(quotes.size()));
 	}
 }
